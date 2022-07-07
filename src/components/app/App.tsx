@@ -22,7 +22,7 @@ function App({ getSearchIdFromApi }: any) {
   }, []);
   return (
     <div className={styles['app-wrapper']}>
-      <img className={styles.app__logo} src="./logo.svg" alt="life without a logo is pain" />
+      <img className={styles.app__logo} src="./company-logos/aviasales.svg" alt="life without a logo is pain" />
       <div className={styles.app}>
         <FilterGroup></FilterGroup>
         <Tabs centered={true} className={styles.main} defaultActiveKey="1">
