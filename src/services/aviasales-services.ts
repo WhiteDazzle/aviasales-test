@@ -17,10 +17,10 @@ export const getSearchId = async () => {
 export const getTicket = async (searchId: string) => {
   try {
     const responseTicket = await getResource(`tickets?searchId=${searchId}`);
-    if (!responseTicket.ok) throw new Error('Проблемка');
+    if (!responseTicket.ok) throw responseTicket;
     const responseTicketObj: TypeResponseTicket = responseTicket.json();
     return responseTicketObj
-  } catch (e) {
-    return 'problems'
+  } catch (e: any) {
+    return e.status;
   }
 }

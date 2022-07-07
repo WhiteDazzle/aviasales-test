@@ -5,9 +5,10 @@ import TypeTicket from "./type-ticket";
 type TypeState = {
   filterTransplants: FilterTransplants;
   searchId: string;
-  tickets?: Array<TypeTicket>;
-  StopLoadingTickets?: boolean;
-  amountTickets?: number;
+  tickets: Array<TypeTicket>;
+  StopLoadingTickets: boolean;
+  amountTickets: number;
+  serverErrorCounter: number;
 };
 
 export default TypeState;

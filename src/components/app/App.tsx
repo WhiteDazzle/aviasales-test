@@ -25,7 +25,7 @@ function App({ getSearchIdFromApi }: any) {
       <img className={styles.app__logo} src="./logo.svg" alt="life without a logo is pain" />
       <div className={styles.app}>
         <FilterGroup></FilterGroup>
-        <Tabs className={styles.main} defaultActiveKey="1">
+        <Tabs centered={true} className={styles.main} defaultActiveKey="1">
           <TabPane tab="САМЫЙ ДЕШЕВЫЙ" key="1">
             <TicketList sortParameter={'byPrice'} />
           </TabPane>

@@ -7,6 +7,7 @@ type TypeAction = {
   tickets?: Array<TypeTicket>;
   downloadTicketsStop?: boolean;
   amountTickets?: number;
+  serverError?: boolean;
 };
 
 export default TypeAction;

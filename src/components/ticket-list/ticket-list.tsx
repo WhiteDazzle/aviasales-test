@@ -6,6 +6,7 @@ import * as actions from '../../redux/actions/actions';
 import TypeState from '../../types-data/type-state';
 import TypeTicket from '../../types-data/type-ticket';
 import LoadingIndicator from '../loading-indicator/loading-indicator';
+import TypeAction from '../../types-data/type-action';
 
 import styles from './ticket-list.module.scss';
 
@@ -36,9 +37,20 @@ const sortTicketsPrice = (Tickets: Array<TypeTicket>) => {
   });
 };
 
-const TicketList = ({ sortParameter, state, getTicketFromApi, addingAdditionalTickets }: any) => {
+const TicketList = ({
+  sortParameter,
+  state,
+  getTicketFromApi,
+  addingAdditionalTickets,
+}: {
+  state: TypeState;
+  getTicketFromApi: any;
+  addingAdditionalTickets: (number: number) => TypeAction;
+  sortParameter: string;
+}) => {
+  const { searchId, StopLoadingTickets, serverErrorCounter, tickets, amountTickets } = state;
   useEffect(() => {
-    if (state.searchId !== '' && !state.StopLoadingTickets) getTicketFromApi(state.searchId);
+    if (searchId !== '' && !StopLoadingTickets && serverErrorCounter < 10) getTicketFromApi(state.searchId);
   });
 
   const filterStops = (ticket: TypeTicket) => {
@@ -46,13 +58,13 @@ const TicketList = ({ sortParameter, state, getTicketFromApi, addingAdditionalTi
     return Object.values(state.filterTransplants)[ticket.segments[0].stops.length];
   };
 
-  const sortedTickets =
-    sortParameter === 'byPrice' ? sortTicketsPrice([...state.tickets]) : sortTicketsFast([...state.tickets]);
-  const visibleTickets = sortedTickets.filter(filterStops).slice(0, state.amountTickets).map(renderTicket);
-  if (visibleTickets.length < 1) return <h1>Рейсов, подходящих под заданные фильтры, не найдено</h1>;
+  const sortedTickets = sortParameter === 'byPrice' ? sortTicketsPrice([...tickets]) : sortTicketsFast([...tickets]);
+  const visibleTickets = sortedTickets.filter(filterStops).slice(0, amountTickets).map(renderTicket);
+  if (visibleTickets.length < 1)
+    return <h1 className={styles.massage}>Рейсов, подходящих под заданные фильтры, не найдено</h1>;
   return (
     <section className={styles['ticket-list']}>
-      <div style={state.StopLoadingTickets ? { display: 'none' } : {}}>
+      <div style={StopLoadingTickets ? { display: 'none' } : {}}>
         <LoadingIndicator />
       </div>
 

@@ -13,6 +13,7 @@ const defaultState: TypeState = {
   tickets: [],
   StopLoadingTickets: false,
   amountTickets: 5,
+  serverErrorCounter: 0,
 };
 
 export default defaultState;

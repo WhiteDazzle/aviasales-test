@@ -22,7 +22,10 @@ const TicketCard = ({ ticketInfo }: { ticketInfo: TypeTicket }) => {
   return (
     <section className={styles['ticket-card']}>
       <div className={styles['price-and-logo']}>
-        <span className={styles['total-price']}> {`${Math.floor(price / 1000)} ${price % 1000}`}</span>
+        <span className={styles['total-price']}>
+          {' '}
+          {`${Math.floor(price / 1000)} ${('000' + (price % 1000)).slice(-3)}`}
+        </span>
         <img src={`./company-logos/${carrier}.jpg`} alt={carrier} />
       </div>
       {ticketBody}
