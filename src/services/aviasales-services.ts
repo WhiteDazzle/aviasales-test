@@ -21,6 +21,6 @@ export const getTicket = async (searchId: string) => {
     const responseTicketObj: TypeResponseTicket = responseTicket.json();
     return responseTicketObj
   } catch (e: any) {
-    return e.status;
+    return e.ok;
   }
 }

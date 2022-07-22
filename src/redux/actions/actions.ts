@@ -1,26 +1,54 @@
 import { getSearchId, getTicket } from '../../services/aviasales-services';
+import {
+  typeChooseFilterTransplants,
+  typeSetSearchId,
+  typeSetTicket,
+  typeAddingAdditionalTickets,
+  typeSaveErrorCount,
+  typeChooseAllFilterTransplants,
+} from './action-type';
+import TypeResponseTicket from '../../types-data/type-response-ticket';
 
 export const chooseFilterTransplants = (filterName: string) => ({
-  type: 'choose_filter_transplants',
+  type: typeChooseFilterTransplants,
   filterName,
 });
+
+export const chooseAllFilterTransplants = () => ({
+  type: typeChooseAllFilterTransplants,
+});
+
+export const saveSearchId = (searchId: string) => {
+  return { type: typeSetSearchId, searchId };
+};
+
+export const saveErrorCount = () => {
+  return { type: typeSaveErrorCount, tickets: [], serverError: true };
+};
+
+export const saveTicket = (response: TypeResponseTicket) => {
+  return { type: typeSetTicket, tickets: response.tickets, StopLoadingTickets: response.stop };
+};
+
+export const addingAdditionalTickets = (amountTickets: number) => ({
+  type: typeAddingAdditionalTickets,
+  amountTickets,
+});
+
 export const getSearchIdFromApi = () => {
   return async (dispatch: any) => {
     const response = await getSearchId();
-    return dispatch({ type: 'set_search_id', searchId: response.searchId });
+    return dispatch(saveSearchId(response.searchId));
   };
 };
 
 export const getTicketFromApi = (searchId: string) => {
   return async (dispatch: any) => {
     const response = await getTicket(searchId);
-    if (typeof response === 'number')
-      return dispatch({ type: 'set_tickets', tickets: [], loadingTickets: false, serverError: true });
-    return dispatch({ type: 'set_tickets', tickets: response.tickets, StopLoadingTickets: response.stop });
+    if (response) {
+      dispatch(saveTicket(response));
+    } else {
+      dispatch(saveErrorCount());
+    }
   };
 };
-
-export const addingAdditionalTickets = (amountTickets: number) => ({
-  type: 'adding_additional_tickets',
-  amountTickets,
-});

@@ -9,9 +9,10 @@ import styles from './filter-group.module.scss';
 interface Props {
   state: TypeState;
   chooseFilterTransplants: (filterName: string) => { type: string; filterName: string };
+  chooseAllFilterTransplants: () => { type: string };
 }
 
-const FilterGroup = ({ state, chooseFilterTransplants }: Props) => {
+const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplants }: Props) => {
   const { noTransplants, oneTransplant, twoTransplants, threeTransplants, allFilterTransplants } =
     state.filterTransplants;
   return (
@@ -22,7 +23,7 @@ const FilterGroup = ({ state, chooseFilterTransplants }: Props) => {
           type="checkbox"
           className={styles['input-checkbox']}
           checked={allFilterTransplants}
-          onChange={() => chooseFilterTransplants('allFilterTransplants')}
+          onChange={chooseAllFilterTransplants}
         />
         <span className={styles.checkbox}></span>
         <span className={styles['checkbox-description']}> Все </span>

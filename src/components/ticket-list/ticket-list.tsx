@@ -49,6 +49,7 @@ const TicketList = ({
   sortParameter: string;
 }) => {
   const { searchId, StopLoadingTickets, serverErrorCounter, tickets, amountTickets } = state;
+
   useEffect(() => {
     if (searchId !== '' && !StopLoadingTickets && serverErrorCounter < 10) getTicketFromApi(state.searchId);
   });
