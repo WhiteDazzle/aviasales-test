@@ -51,9 +51,8 @@ const TicketList = ({
   const { searchId, StopLoadingTickets, serverErrorCounter, tickets, amountTickets } = state;
 
   useEffect(() => {
-    if (searchId === '' || serverErrorCounter >= 10) return;
-    getTicketFromApi(state.searchId);
-  }, [searchId, serverErrorCounter]);
+    if (searchId !== '' && !StopLoadingTickets && serverErrorCounter < 10) getTicketFromApi(state.searchId);
+  });
 
   const filterStops = (ticket: TypeTicket) => {
     if (ticket.segments[0].stops.length > 3) return state.filterTransplants.allFilterTransplants;

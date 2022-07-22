@@ -42,9 +42,7 @@ export const getSearchIdFromApi = () => {
   };
 };
 
-export const getTicketFromApi = (searchId: string, stop = false) => {
-  if (stop) return;
-
+export const getTicketFromApi = (searchId: string) => {
   return async (dispatch: any) => {
     const response = await getTicket(searchId);
     if (response) {
@@ -52,6 +50,5 @@ export const getTicketFromApi = (searchId: string, stop = false) => {
     } else {
       dispatch(saveErrorCount());
     }
-    return getTicketFromApi(searchId, response.stop);
   };
 };
