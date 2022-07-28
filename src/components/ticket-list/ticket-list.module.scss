@@ -1,6 +1,7 @@
 .ticket-list {
   display: flex;
   flex-direction: column;
+  max-width:502px
   width: auto;
   margin-right: 20px;
   @media (max-width: 620px) {
