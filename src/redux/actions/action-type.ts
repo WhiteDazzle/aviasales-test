@@ -4,4 +4,5 @@ export const typeSetTicket = 'set_tickets'
 export const typeAddingAdditionalTickets = 'adding_additional_tickets';
 export const typeStart = 'start'
 export const typeSaveErrorCount = 'save_error_counter';
+export const typeSaveErrorMassage = 'save_error_massage';
 export const typeChooseAllFilterTransplants = 'choose_all_filter_transplants'

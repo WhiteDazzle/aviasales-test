@@ -6,6 +6,7 @@ import {
   typeAddingAdditionalTickets,
   typeSaveErrorCount,
   typeChooseAllFilterTransplants,
+  typeSaveErrorMassage
 } from './action-type';
 import TypeResponseTicket from '../../types-data/type-response-ticket';
 
@@ -26,6 +27,10 @@ export const saveErrorCount = () => {
   return { type: typeSaveErrorCount, tickets: [], serverError: true };
 };
 
+export const saveErrorMassage = (message:string) => {
+  return { type: typeSaveErrorMassage, errorMessage:message };
+};
+
 export const saveTicket = (response: TypeResponseTicket) => {
   return { type: typeSetTicket, tickets: response.tickets, StopLoadingTickets: response.stop };
 };
@@ -37,8 +42,13 @@ export const addingAdditionalTickets = (amountTickets: number) => ({
 
 export const getSearchIdFromApi = () => {
   return async (dispatch: any) => {
-    const response = await getSearchId();
-    return dispatch(saveSearchId(response.searchId));
+    try {
+      const response = await getSearchId();
+      return dispatch(saveSearchId(response.searchId));
+    } catch (e:any) {
+      console.log(e.message)
+      return dispatch(saveErrorMassage(e.message))
+    }
   };
 };
 

@@ -25,11 +25,16 @@
 }
 
 .massage {
-  padding-right: 20px;
-  padding-left: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+  height: 184px;
   background-color: white;
+  padding: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 24px;
+  text-align: center;
+  vertical-align: center;
 }
 
 .ticket-list__loading-indicator-wrapper {

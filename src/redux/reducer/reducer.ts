@@ -6,6 +6,7 @@ import {
   typeStart,
   typeSaveErrorCount,
   typeChooseAllFilterTransplants,
+  typeSaveErrorMassage
 } from '../actions/action-type';
 
 import TypeState from '../../types-data/type-state';
@@ -21,6 +22,11 @@ const reducer = (state: TypeState = defaultState, action: TypeAction) => {
   switch (action.type) {
     case typeStart:
       return defaultState;
+
+    case typeSaveErrorMassage:
+      return {
+        ...state, errorMassage: action.errorMessage
+      }
 
     case typeChooseFilterTransplants:
       return {

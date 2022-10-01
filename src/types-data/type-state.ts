@@ -1,5 +1,4 @@
 import FilterTransplants from './type-filter-transplants';
-import {TypeResponseSearchId} from "./Type-response-search-id";
 import TypeTicket from "./type-ticket";
 
 type TypeState = {
@@ -9,6 +8,7 @@ type TypeState = {
   StopLoadingTickets: boolean;
   amountTickets: number;
   serverErrorCounter: number;
+  errorMassage: string;
 };
 
 export default TypeState;

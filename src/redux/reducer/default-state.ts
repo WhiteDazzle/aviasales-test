@@ -12,6 +12,7 @@ const defaultState: TypeState = {
   StopLoadingTickets: false,
   amountTickets: 5,
   serverErrorCounter: 0,
+  errorMassage: '',
 };
 
 export default defaultState;

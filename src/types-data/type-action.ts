@@ -8,6 +8,7 @@ type TypeAction = {
   downloadTicketsStop?: boolean;
   amountTickets?: number;
   serverError?: boolean;
+  errorMessage?: string;
 };
 
 export default TypeAction;
