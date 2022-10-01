@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import TicketCard from '../ticket-card';
-import * as actions from '../../redux/actions/actions';
-import TypeState from '../../types-data/type-state';
-import TypeTicket from '../../types-data/type-ticket';
-import LoadingIndicator from '../loading-indicator/loading-indicator';
-import TypeAction from '../../types-data/type-action';
+import * as actions from '../../../redux/actions/actions';
+import TypeState from '../../../types-data/type-state';
+import TypeTicket from '../../../types-data/type-ticket';
+import LoadingIndicator from '../../blocks/loading-indicator/loading-indicator';
+import TypeAction from '../../../types-data/type-action';
 
 import styles from './ticket-list.module.scss';
 
@@ -18,8 +18,7 @@ const renderTicket = (ticketInfo: TypeTicket) => {
         ticketInfo.price +
         ticketInfo.segments[0].duration +
         ticketInfo.segments[0].date +
-        ticketInfo.carrier +
-        Math.random()
+        ticketInfo.carrier
       }
     />
   );
@@ -65,7 +64,7 @@ const TicketList = ({
     return <h1 className={styles.massage}>Рейсов, подходящих под заданные фильтры, не найдено</h1>;
   return (
     <section className={styles['ticket-list']}>
-      <div style={StopLoadingTickets ? { display: 'none' } : {}}>
+      <div style={StopLoadingTickets ? { visibility: `collapse` } : {}}>
         <LoadingIndicator />
       </div>
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../redux/actions/actions';
-import TypeState from '../../types-data/type-state';
+import * as actions from '../../../redux/actions/actions';
+import TypeState from '../../../types-data/type-state';
 
 import styles from './filter-group.module.scss';
 

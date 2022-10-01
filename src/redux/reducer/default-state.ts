@@ -1,6 +1,4 @@
 import TypeState from '../../types-data/type-state';
-import {getSearchId} from "../../services/aviasales-services";
-
 const defaultState: TypeState = {
   filterTransplants: {
     noTransplants: true,

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TypeTicket from '../../types-data/type-ticket';
-import TicketSegment from '../ticket-segment';
+import TypeTicket from '../../../types-data/type-ticket';
+import TicketSegment from '../../blocks/ticket-segment';
 
 import styles from './ticket-card.module.scss';
 
@@ -26,7 +26,7 @@ const TicketCard = ({ ticketInfo }: { ticketInfo: TypeTicket }) => {
           {' '}
           {`${Math.floor(price / 1000)} ${('000' + (price % 1000)).slice(-3)}`}
         </span>
-        <img src={`./company-logos/${carrier}.jpg`} alt={carrier} />
+        <img src={`//pics.avs.io/99/36/${carrier}.png`} alt={carrier} />
       </div>
       {ticketBody}
     </section>

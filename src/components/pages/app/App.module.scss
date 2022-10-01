@@ -1,0 +1,51 @@
+.app-wrapper {
+  padding-top: 35px;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #F3F7FA;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.app {
+  margin: 10px auto 10px auto;
+  min-width: 320px;
+  max-width: 754px;
+  display: flex;
+  justify-content: space-between;
+  @media (max-width: 620px) {
+    flex-direction: column;
+  }
+}
+
+.app__logo {
+  display: block;
+  margin: 0 auto 35px auto;
+  width: 70px;
+  height: 70px;
+  background-image: url("../../../assets/img/aviasales.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.main {
+  flex-grow: 1;
+}
+
+.app_ticket-list-wrapper {
+  max-width: 502px;
+}
+
+.app_filter-group-wrapper {
+  position: sticky;
+  top: 155px;
+  margin-right: 20px;
+  width: 232px;
+  height: 252px;
+  @media (max-width: 620px) {
+    position: static;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+}

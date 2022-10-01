@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TypeTicketSegment from '../../types-data/type-ticket-segment';
+import TypeTicketSegment from '../../../types-data/type-ticket-segment';
 
 import styles from './ticket-segment.module.scss';
 
