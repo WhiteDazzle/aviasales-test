@@ -2,6 +2,7 @@
   margin: 10px auto 10px auto;
   min-width: 320px;
   max-width: 754px;
+  min-height: 700px;
   display: flex;
   justify-content: space-between;
   @media (max-width: 620px) {
@@ -19,7 +20,8 @@
 
 .app_filter-group-wrapper {
   position: sticky;
-  top: 155px;
+  align-self: flex-start;
+  top: 120px;
   margin-right: 20px;
   width: 232px;
   height: 252px;
