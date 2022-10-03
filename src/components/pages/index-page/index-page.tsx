@@ -1,33 +1,51 @@
 import React from "react";
 import styles from "./index-page.module.scss";
 import FilterGroup from "../../blocks/filter-group/filter-group";
-import { Tabs } from "antd";
 import TicketList from "../../layouts/ticket-list";
 import { softByPrise, sortByFast } from "../../../helpers/vars/sort-vars";
-
-const { TabPane } = Tabs;
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { ticketsSorted } from "../../../store/ticketsSlice";
+import { ticketsSelector } from "../../../store/selectors";
 
 const IndexPage = () => {
+  const dispatch = useAppDispatch();
+  const { sortParameter } = useAppSelector(ticketsSelector);
   return (
-      <div className={styles['index-page']}>
-        <div className={styles["app_filter-group-wrapper"]}>
-          <FilterGroup />
-        </div>
-
-        <Tabs centered={true} className={styles.main} defaultActiveKey="1">
-          <TabPane tab="САМЫЙ ДЕШЕВЫЙ" key="1">
-            <div className={styles["app_ticket-list-wrapper"]}>
-              <TicketList sortParameter={softByPrise} />
-            </div>
-          </TabPane>
-          <TabPane tab="САМЫЙ БЫСТРЫЙ" key="2">
-            <div className={styles["app_ticket-list-wrapper"]}>
-              <TicketList sortParameter={sortByFast} />
-            </div>
-          </TabPane>
-        </Tabs>
+    <div className={styles["index-page"]}>
+      <div className={styles["app_filter-group-wrapper"]}>
+        <FilterGroup />
       </div>
-  )
-}
+      <div className={styles.main}>
+        <div className={styles[`sorted-group`]}>
+          <label className={styles["sorted-radio-wrapper"]}>
+            <input
+              type="radio"
+              className={styles["sorted-radio-input"]}
+              name="sortedBy"
+              checked={sortParameter===softByPrise}
+              onChange={(e) => dispatch(ticketsSorted(e.target.value))}
+              value={softByPrise}
+            />
+            <div className={styles["sorted-radio"]}>САМЫЙ ДЕШЕВЫЙ </div>
+          </label>
+          <label className={styles["sorted-radio-wrapper"]}>
+            <input
+              type="radio"
+              className={styles["sorted-radio-input"]}
+              name="sortedBy"
+              checked={sortParameter===sortByFast}
+              onChange={(e) => dispatch(ticketsSorted(sortByFast))}
+              value={sortByFast}
+            />
+            <div className={styles["sorted-radio"]}>САМЫЙ БЫСТРЫЙ </div>
+          </label>
+        </div>
+        <div className={styles["app_ticket-list-wrapper"]}>
+          <TicketList />
+        </div>
+      </div>
+    </div>
+  );
+};
 
-export default IndexPage
+export default IndexPage;

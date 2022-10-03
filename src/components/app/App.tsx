@@ -1,27 +1,27 @@
 import React, { useEffect } from "react";
-import { connect } from "react-redux";
 
 import "antd/dist/antd.css";
-import * as actions from "../../redux/actions/actions";
-import TypeState from "../../types-data/type-state";
 
 import styles from "./App.module.scss";
 import IndexPage from "../pages/index-page/index-page";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { getSearchIdFromApi } from "../../store/userSlice";
+import { userSearchIdSelector } from "../../store/selectors";
 
-function App({ getSearchIdFromApi }: any) {
+function App() {
+  const dispatch = useAppDispatch()
+  const result = useAppSelector(userSearchIdSelector)
+  console.log(result)
   useEffect(() => {
-      getSearchIdFromApi();
+    dispatch(getSearchIdFromApi())
   }, []);
 
   return (
     <div className={styles["app-wrapper"]}>
-      <div className={styles[`app__logo`]} />
+      <img src={'./img/aviasales.svg'} className={styles[`app__logo`]} />
       <IndexPage/>
     </div>
   );
 }
 
-const mapStateToProps = (state: TypeState) => {
-  return { state };
-};
-export default connect(mapStateToProps, actions)(App);
+export default App;

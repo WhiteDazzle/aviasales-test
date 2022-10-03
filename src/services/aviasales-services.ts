@@ -1,7 +1,7 @@
 import TypeResponseTicket from "../types-data/type-response-ticket";
 import { receiveErrorSearchId } from "../helpers/vars/errorMessage";
 
-const baseUrl = 'https://aviasales-test-api.kata.academy/';
+const baseUrl = 'https://front-test.dev.aviasales.ru/';
 
 const getResource = (additionUrl: string, options = {}): any => {
   const url = baseUrl + additionUrl;
@@ -16,12 +16,8 @@ export const getSearchId = async () => {
 }
 
 export const getTicket = async (searchId: string) => {
-  try {
     const responseTicket = await getResource(`tickets?searchId=${searchId}`);
-    if (!responseTicket.ok) throw responseTicket;
+    if (!responseTicket.ok) throw new Error();
     const responseTicketObj: TypeResponseTicket = responseTicket.json();
     return responseTicketObj
-  } catch (e: any) {
-    return e.ok;
-  }
 }

@@ -1,20 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
-
-import * as actions from '../../../redux/actions/actions';
-import TypeState from '../../../types-data/type-state';
-
+import { chooseFilterTransplants, chooseAllFilterTransplants } from "../../../store/ticketsSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
+import { ticketsSelector } from "../../../store/selectors";
 import styles from './filter-group.module.scss';
 
-interface Props {
-  state: TypeState;
-  chooseFilterTransplants: (filterName: string) => { type: string; filterName: string };
-  chooseAllFilterTransplants: () => { type: string };
-}
 
-const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplants }: Props) => {
+const FilterGroup = () => {
+  const dispatch = useAppDispatch();
   const { noTransplants, oneTransplant, twoTransplants, threeTransplants, allFilterTransplants } =
-    state.filterTransplants;
+    useAppSelector(ticketsSelector).filterTransplants;
   return (
     <section className={styles['filter-group']}>
       <div className={styles.title}>КОЛИЧЕСТВО ПЕРЕСАДОК</div>
@@ -23,7 +17,7 @@ const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplant
           type="checkbox"
           className={styles['input-checkbox']}
           checked={allFilterTransplants}
-          onChange={chooseAllFilterTransplants}
+          onChange={() => dispatch(chooseAllFilterTransplants())}
         />
         <span className={styles.checkbox}></span>
         <span className={styles['checkbox-description']}> Все </span>
@@ -33,7 +27,7 @@ const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplant
           type="checkbox"
           className={styles['input-checkbox']}
           checked={noTransplants}
-          onChange={() => chooseFilterTransplants('noTransplants')}
+          onChange={() => dispatch(chooseFilterTransplants('noTransplants'))}
         />
         <span className={styles.checkbox}></span>
         <span className={styles['checkbox-description']}> Без пересадок </span>
@@ -43,7 +37,7 @@ const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplant
           type="checkbox"
           className={styles['input-checkbox']}
           checked={oneTransplant}
-          onChange={() => chooseFilterTransplants('oneTransplant')}
+          onChange={() => dispatch(chooseFilterTransplants('oneTransplant'))}
         />
         <span className={styles.checkbox}></span>
         <span className={styles['checkbox-description']}> 1 пересадка </span>
@@ -53,7 +47,7 @@ const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplant
           type="checkbox"
           className={styles['input-checkbox']}
           checked={twoTransplants}
-          onChange={() => chooseFilterTransplants('twoTransplants')}
+          onChange={() => dispatch(chooseFilterTransplants('twoTransplants'))}
         />
         <span className={styles.checkbox}></span>
         <span className={styles['checkbox-description']}> 2 пересадки </span>
@@ -63,7 +57,7 @@ const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplant
           type="checkbox"
           className={styles['input-checkbox']}
           checked={threeTransplants}
-          onChange={() => chooseFilterTransplants('threeTransplants')}
+          onChange={() => dispatch(chooseFilterTransplants('threeTransplants'))}
         />
         <span className={styles.checkbox}></span>
         <span className={styles['checkbox-description']}> 3 пересадки </span>
@@ -71,8 +65,5 @@ const FilterGroup = ({ state, chooseFilterTransplants, chooseAllFilterTransplant
     </section>
   );
 };
-const mapStateToProps = (state: TypeState) => {
-  return { state };
-};
 
-export default connect(mapStateToProps, actions)(FilterGroup);
+export default FilterGroup;

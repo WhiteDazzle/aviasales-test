@@ -32,3 +32,34 @@
     height: auto;
   }
 }
+
+.sorted-group {
+  margin-bottom: 20px;
+  display: flex;
+  height: 40px;
+  justify-content: space-evenly;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sorted-radio-wrapper {
+  width: 50%;
+}
+
+.sorted-radio {
+  margin-top: -20px;
+  padding-top: 8px;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+}
+
+.sorted-radio-input {
+  appearance: none;
+  -webkit-appearance: none;
+  &:checked + .sorted-radio {
+    color: white;
+    background-color: #2196f3;
+  }
+}
