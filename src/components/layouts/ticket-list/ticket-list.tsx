@@ -14,7 +14,10 @@ import {
   ticketsSelector,
   userSearchIdSelector,
 } from "../../../store/selectors";
-import { getTicketFromApi, addVisibleTickets } from "../../../store/ticketsSlice";
+import {
+  getTicketFromApi,
+  addVisibleTickets,
+} from "../../../store/ticketsSlice";
 
 const renderTicket = (ticketInfo: TypeTicket) => {
   return (
@@ -42,7 +45,7 @@ const TicketList = () => {
     tickets,
     amountTickets,
     filterTransplants,
-    sortParameter
+    sortParameter,
   } = useAppSelector(ticketsSelector);
 
   useEffect(() => {
@@ -81,8 +84,7 @@ const TicketList = () => {
       <div style={StopLoadingTickets ? { visibility: `collapse` } : {}}>
         <LoadingIndicator />
       </div>
-
-      {visibleTickets}
+      <ul className={styles['tickets-ul']}>{visibleTickets}</ul>
       <button
         className={styles["button-show-more-ticket"]}
         onClick={() => dispatch(addVisibleTickets(5))}

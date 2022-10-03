@@ -62,4 +62,8 @@
     color: white;
     background-color: #2196f3;
   }
+  &:focus + .sorted-radio, &:hover + .sorted-radio{
+    outline: 3px solid #9abbce;
+    outline-offset: -3px;
+  }
 }

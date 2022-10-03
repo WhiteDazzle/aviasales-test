@@ -21,6 +21,8 @@
     opacity: 0.4;
   }
   @media (max-width: 620px) {
+    height: auto;
+    overflow: auto;
     flex-shrink: 0;
     max-width: 620px;
     padding-right: 0;
@@ -33,6 +35,15 @@
   background-color: $colorBlue;
   border-radius: 5px;
   border: 15px solid $colorBlue;
+  &:focus {
+    outline: 3px solid #9abbce;
+    outline-offset: -3px;
+  }
+}
+
+.tickets-ul {
+  margin-left: 0;
+  padding-left: 0;
 }
 
 .massage {

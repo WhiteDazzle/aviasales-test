@@ -1,12 +1,17 @@
 @import '../../../assets/scss/vars';
 
 .ticket-card {
+  list-style-type: none;
   margin-bottom: 22px;
   height: 184px;
   background-color: white;
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  &:focus {
+    outline: 3px solid #9abbce;
+    outline-offset: -3px;
+  }
 }
 
 .price-and-logo {

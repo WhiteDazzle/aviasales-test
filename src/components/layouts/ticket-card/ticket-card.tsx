@@ -20,7 +20,7 @@ const TicketCard = ({ ticketInfo }: { ticketInfo: TypeTicket }) => {
       </div>
     );
   return (
-    <section className={styles['ticket-card']}>
+    <li className={styles['ticket-card']} tabIndex={0}>
       <div className={styles['price-and-logo']}>
         <span className={styles['total-price']}>
           {' '}
@@ -29,7 +29,7 @@ const TicketCard = ({ ticketInfo }: { ticketInfo: TypeTicket }) => {
         <img src={`//pics.avs.io/99/36/${carrier}.png`} alt={carrier} />
       </div>
       {ticketBody}
-    </section>
+    </li>
   );
 };
 
