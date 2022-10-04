@@ -1,19 +1,11 @@
+@import '../../assets/scss/vars';
+
 .app-wrapper {
   padding-top: 35px;
   max-width: 100%;
   min-height: 100vh;
-  background-color: #F3F7FA;
+  background-color: $color-app-background;
   font-family: 'Open Sans', sans-serif;
-  &::-webkit-scrollbar {
-    width: 10px;
-    background-color: #F3F7FA;
-    border: none;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: rgba(33, 150, 243, 0.5);
-    opacity: 0.4;
-  }
   @media (min-width: 620px) {
     max-height: 100vh;
     overflow: hidden;
