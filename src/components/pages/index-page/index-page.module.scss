@@ -21,9 +21,7 @@
 }
 
 .app_filter-group-wrapper {
-  position: sticky;
   align-self: flex-start;
-  top: 120px;
   margin-right: 20px;
   width: 232px;
   height: 252px;
@@ -50,7 +48,7 @@
 
 .sorted-radio {
   margin-top: -20px;
-  padding-top: 8px;
+  padding-top: 12px;
   height: 40px;
   width: 100%;
   text-align: center;

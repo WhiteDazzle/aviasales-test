@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
-
-import "antd/dist/antd.css";
-
 import styles from "./App.module.scss";
 import IndexPage from "../pages/index-page/index-page";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { getSearchIdFromApi } from "../../store/userSlice";
 import { userSearchIdSelector } from "../../store/selectors";
-
+import 'normalize.css'
 function App() {
   const dispatch = useAppDispatch()
   const result = useAppSelector(userSearchIdSelector)
