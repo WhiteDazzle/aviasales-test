@@ -74,7 +74,6 @@ export const ticketsSlice = createSlice({
   },
   extraReducers: {
     [getTicketFromApi.fulfilled.type]: (state, action) => {
-      console.log(action);
       state.StopLoadingTickets = action.payload.stop;
       state.serverErrorCounter = 0;
       //@ts-ignore
