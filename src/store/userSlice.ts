@@ -2,13 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getSearchId } from "../services/aviasales-services";
 import { receiveErrorSearchId } from "../helpers/vars/errorMessage";
 
-// Define a type for the slice state
 interface userState {
   searchId: string;
   errorMassage: string
 }
 
-// Define the initial state using that type
 const initialState: userState = {
   searchId: '',
   errorMassage: '',

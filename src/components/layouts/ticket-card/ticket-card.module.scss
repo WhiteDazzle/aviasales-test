@@ -7,7 +7,7 @@
   height: 184px;
   background-color: $color-block-background;
   padding: 20px;
-  &:focus {
+  &:focus-visible {
     @extend %outline-elem;
   }
 }

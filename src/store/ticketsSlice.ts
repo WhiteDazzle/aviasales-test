@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { getTicket } from "../services/aviasales-services";
 import { softByPrise } from "../helpers/vars/sort-vars";
 import TypeTicket from "../types-data/type-ticket";
@@ -38,21 +38,21 @@ export const ticketsSlice = createSlice({
   name: "tickets",
   initialState,
   reducers: {
-    addVisibleTickets: (state, action) => {
+    addVisibleTickets: (state, action:PayloadAction<number>) => {
       state.amountTickets = state.amountTickets + action.payload;
     },
-    chooseFilterTransplants: (state, action) => {
+    chooseFilterTransplants: (state, action:PayloadAction<keyof TypeFiltersTransplants>) => {
       const {
         filterTransplants,
       }: { filterTransplants: TypeFiltersTransplants } = state;
       const newFilter =
-        !filterTransplants[action.payload as keyof typeof filterTransplants];
+        !filterTransplants[action.payload];
       state.filterTransplants = {
         ...filterTransplants,
-        [action.payload as keyof typeof filterTransplants]: newFilter,
+        [action.payload]: newFilter,
         allFilterTransplants: !Object.values({
           ...filterTransplants,
-          [action.payload as keyof typeof filterTransplants]: newFilter,
+          [action.payload]: newFilter,
         })
           .slice(0, 4)
           .includes(false),
@@ -89,7 +89,7 @@ export const {
   addVisibleTickets,
   chooseFilterTransplants,
   chooseAllFilterTransplants,
-  ticketsSorted
+  ticketsSorted,
 } = ticketsSlice.actions;
 
 export default ticketsSlice.reducer;

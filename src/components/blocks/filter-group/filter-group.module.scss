@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 20px 0 20px 0;
+  padding: 10px 0 10px 0;
   background-color: $color-block-background;
   @media (max-width: 620px) {
     position: static;
@@ -26,7 +26,13 @@
   }
 }
 
+.checkbox-ul {
+  margin: 0;
+  padding-left: 0;
+}
+
 .checkbox-container {
+  list-style-type: none;
   box-sizing: border-box;
   position: relative;
   height: 50px;
@@ -53,7 +59,7 @@
     background-repeat: no-repeat;
     background-size: 16px 16px;
   }
-  &:focus + .checkbox {
+  &:focus-visible + .checkbox {
     border: 3px solid $color-border-checkbox-color;
   }
 }
