@@ -1,1 +1,2 @@
-https://kata-aviasales.vercel.app/
+https://aviasales-text.vercel.app/
+задание: https://github.com/KosyanMedia/test-tasks/tree/master/aviasales_frontend
