@@ -10,6 +10,8 @@
   width: auto;
   height: 80vh;
   overflow: scroll;
+  scrollbar-color: rgba(33, 150, 243, 0.5) $color-app-background;
+  scrollbar-width: thin;
   &::-webkit-scrollbar {
     width: 10px;
     background-color: $color-app-background;
