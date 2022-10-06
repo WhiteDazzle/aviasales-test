@@ -38,15 +38,17 @@ export const ticketsSlice = createSlice({
   name: "tickets",
   initialState,
   reducers: {
-    addVisibleTickets: (state, action:PayloadAction<number>) => {
+    addVisibleTickets: (state, action: PayloadAction<number>) => {
       state.amountTickets = state.amountTickets + action.payload;
     },
-    chooseFilterTransplants: (state, action:PayloadAction<keyof TypeFiltersTransplants>) => {
+    chooseFilterTransplants: (
+      state,
+      action: PayloadAction<keyof TypeFiltersTransplants>
+    ) => {
       const {
         filterTransplants,
       }: { filterTransplants: TypeFiltersTransplants } = state;
-      const newFilter =
-        !filterTransplants[action.payload];
+      const newFilter = !filterTransplants[action.payload];
       state.filterTransplants = {
         ...filterTransplants,
         [action.payload]: newFilter,
@@ -72,16 +74,17 @@ export const ticketsSlice = createSlice({
       state.sortParameter = action.payload;
     },
   },
-  extraReducers: {
-    [getTicketFromApi.fulfilled.type]: (state, action) => {
-      state.StopLoadingTickets = action.payload.stop;
-      state.serverErrorCounter = 0;
-      //@ts-ignore
-      state.tickets = [...state.tickets, ...action.payload.tickets];
-    },
-    [getTicketFromApi.rejected.type]: (state: ticketsState) => {
-      state.serverErrorCounter = state.serverErrorCounter + 1;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(getTicketFromApi.fulfilled, (state, action) => {
+        state.StopLoadingTickets = action.payload.stop;
+        state.serverErrorCounter = 0;
+        //@ts-ignore
+        state.tickets = [...state.tickets, ...action.payload.tickets];
+      })
+      .addCase(getTicketFromApi.rejected, (state: ticketsState) => {
+        state.serverErrorCounter = state.serverErrorCounter + 1;
+      });
   },
 });
 
