@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 import TicketCard from "../ticket-card";
 import TypeTicket from "../../../types-data/type-ticket";
@@ -29,14 +29,14 @@ const renderTicket = (ticketInfo: TypeTicket) => {
         ticketInfo.segments[0].date +
         ticketInfo.carrier +
         ticketInfo.segments[1].duration +
-        ticketInfo.segments[1].date +
-        Math.random()
+        ticketInfo.segments[1].date
       }
     />
   );
 };
 
 const TicketList = () => {
+  const ticketListRef = useRef<HTMLUListElement>(null);
   const dispatch = useAppDispatch();
   const { searchId, errorMassage } = useAppSelector(userSearchIdSelector);
   const {
@@ -47,6 +47,14 @@ const TicketList = () => {
     filterTransplants,
     sortParameter,
   } = useAppSelector(ticketsSelector);
+
+  useEffect(() => {
+    (
+      ticketListRef.current?.children[
+        ticketListRef.current?.children.length - 5
+      ] as HTMLLIElement
+    )?.focus();
+  }, [amountTickets]);
 
   useEffect(() => {
     if (searchId !== "" && !StopLoadingTickets && serverErrorCounter < 10) {
@@ -84,10 +92,14 @@ const TicketList = () => {
       <div style={StopLoadingTickets ? { visibility: `collapse` } : {}}>
         <LoadingIndicator />
       </div>
-      <ul className={styles['tickets-ul']}>{visibleTickets}</ul>
+      <ul ref={ticketListRef} className={styles["tickets-ul"]}>
+        {visibleTickets}
+      </ul>
       <button
         className={styles["button-show-more-ticket"]}
-        onClick={() => dispatch(addVisibleTickets(5))}
+        onClick={() => {
+          dispatch(addVisibleTickets(5));
+        }}
       >
         ПОКАЗАТЬ ЕЩЁ 5 БИЛЕТОВ
       </button>
