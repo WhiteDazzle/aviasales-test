@@ -60,7 +60,7 @@ const TicketList = () => {
     if (searchId !== "" && !StopLoadingTickets && serverErrorCounter < 10) {
       dispatch(getTicketFromApi(searchId));
     }
-  });
+  }, [searchId, tickets.length, serverErrorCounter]);
 
   const filterStops = (ticket: TypeTicket) => {
     if (ticket.segments[0].stops.length > 3)
