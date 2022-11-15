@@ -6,6 +6,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../hooks/hooks";
 import { ticketsSelector } from "../../../store/selectors";
 import styles from "./filter-group.module.scss";
+import LabelCheckbox from "../inputs/label-checkbox/label-checkbox";
 
 const FilterGroup = () => {
   const dispatch = useAppDispatch();
@@ -19,71 +20,43 @@ const FilterGroup = () => {
   return (
     <div className={styles["filter-group"]}>
       <h2 className={styles.title}>КОЛИЧЕСТВО ПЕРЕСАДОК</h2>
-      <ul className={styles['checkbox-ul']}>
-        <li  className={styles["checkbox-container"]}>
-          <label>
-            <input
-              type="checkbox"
-              className={styles["input-checkbox"]}
-              checked={allFilterTransplants}
-              onChange={() => dispatch(chooseAllFilterTransplants())}
-            />
-            <span className={styles.checkbox}></span>
-            <span className={styles["checkbox-description"]}> Все </span>
-          </label>
+      <ul className={styles["checkbox-ul"]}>
+        <li className={styles["checkbox-container"]}>
+          <LabelCheckbox
+            LabelText={"все"}
+            onChange={() => dispatch(chooseAllFilterTransplants())}
+            checked={allFilterTransplants}
+          />
         </li>
         <li className={styles["checkbox-container"]}>
-        <label>
-          <input
-            type="checkbox"
-            className={styles["input-checkbox"]}
-            checked={noTransplants}
+          <LabelCheckbox
+            LabelText={"Без пересадок"}
             onChange={() => dispatch(chooseFilterTransplants("noTransplants"))}
+            checked={noTransplants}
           />
-          <span className={styles.checkbox}></span>
-          <span className={styles["checkbox-description"]}>
-            {" "}
-            Без пересадок{" "}
-          </span>
-        </label>
         </li>
-        <li  className={styles["checkbox-container"]}>
-        <label>
-          <input
-            type="checkbox"
-            className={styles["input-checkbox"]}
-            checked={oneTransplant}
+        <li className={styles["checkbox-container"]}>
+          <LabelCheckbox
+            LabelText={"1 пересадка"}
             onChange={() => dispatch(chooseFilterTransplants("oneTransplant"))}
+            checked={oneTransplant}
           />
-          <span className={styles.checkbox}></span>
-          <span className={styles["checkbox-description"]}> 1 пересадка </span>
-        </label>
         </li>
-        <li  className={styles["checkbox-container"]}>
-        <label>
-          <input
-            type="checkbox"
-            className={styles["input-checkbox"]}
-            checked={twoTransplants}
+        <li className={styles["checkbox-container"]}>
+          <LabelCheckbox
+            LabelText={"2 пересадки"}
             onChange={() => dispatch(chooseFilterTransplants("twoTransplants"))}
+            checked={twoTransplants}
           />
-          <span className={styles.checkbox}></span>
-          <span className={styles["checkbox-description"]}> 2 пересадки </span>
-        </label>
         </li>
-        <li  className={styles["checkbox-container"]}>
-        <label>
-          <input
-            type="checkbox"
-            className={styles["input-checkbox"]}
-            checked={threeTransplants}
+        <li className={styles["checkbox-container"]}>
+          <LabelCheckbox
+            LabelText={"3 пересадки"}
             onChange={() =>
               dispatch(chooseFilterTransplants("threeTransplants"))
             }
+            checked={threeTransplants}
           />
-          <span className={styles.checkbox}></span>
-          <span className={styles["checkbox-description"]}> 3 пересадки </span>
-        </label>
         </li>
       </ul>
     </div>
