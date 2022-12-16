@@ -1,7 +1,7 @@
 import TypeResponseTicket from "../types-data/type-response-ticket";
 import { receiveErrorSearchId } from "../helpers/vars/errorMessage";
 
-const baseUrl = 'https://front-test.dev.aviasales.ru/';
+const baseUrl = 'https://aviasales-test-api.kata.academy/';
 
 const getResource = (additionUrl: string, options = {}): any => {
   const url = baseUrl + additionUrl;
